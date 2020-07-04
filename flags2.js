@@ -98,6 +98,7 @@ function generateGame(data) {
       return filteredContinents.includes(obj.continent)
     })
     countries = filteredData.map(a => a.country);
+    countries = countries.filter(unique);
   }
   options = getRandomArrayElements(countries, numberOfOptions);
   correctOptionIndex = Math.floor(Math.random() * numberOfOptions);
