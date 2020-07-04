@@ -1,0 +1,141 @@
+html {
+  font-family: "Ubuntu";
+}
+
+#correctOptionImage {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  max-height: 300px;
+  border: 1px solid DimGrey;
+}
+
+#previousImage {
+  height: auto;
+  width: 150px;
+}
+
+#progress {
+  width: 100%;
+  max-width: 600px;
+  background-color: lightgrey;
+  border-radius: 2px;
+}
+
+#bar {
+  width: 0;
+  height: 5px;
+  background-color: DarkGreen;
+  border-radius: 2px;
+}
+
+#mainContainer {
+  position: relative;
+  display: inline-block;
+}
+
+#mainContainer button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 3px;
+  position: absolute;
+  color: white;
+  font-size: 16px;
+}
+
+/* #mainContainer button:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+} */
+
+#mainContainer #ArrowUp {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#mainContainer #ArrowLeft {
+  left: 0;
+  bottom: 50%;
+  transform: translate(0, 50%);
+}
+
+#mainContainer #ArrowRight {
+  right: 0;
+  bottom: 50%;
+  transform: translate(1px, 50%);
+}
+
+#mainContainer #ArrowDown {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -17.5%);
+}
+
+#previousImageContainer {
+  position: absolute;
+  width: auto;
+}
+
+#previousImageContainer #previousImage {
+  position: relative;
+  width: auto;
+  height: 100px;
+}
+
+#previousImageContainer #previousImageContent {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: lightgrey;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+#previousImageContainer #previousImageContent:hover {
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 0;
+}
+
+#checkBoxes label {
+  display: inline-block;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+#checkBoxes input {
+  vertical-align: middle;
+}
+
+#checkBoxes label span {
+  vertical-align: middle;
+}
+
+.scoreContainer {
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+  width: 75px;
+  height: 50px;
+}
+
+.scoreContainer .score {
+  position: absolute;
+  font-size: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 1px 1px 2px #000000;
+}
+
+#correctScoreContainer {
+  background-color: Green;
+}
+
+#incorrectScoreContainer {
+  background-color: FireBrick;
+}
