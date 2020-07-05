@@ -4,7 +4,6 @@ html {
 
 #correctOptionImage {
   max-height: 50vh;
-  min-width: 50vh;
   width: 100%;
   border: 1px solid DimGrey;
 }
