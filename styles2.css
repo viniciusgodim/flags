@@ -66,7 +66,8 @@ div {
   border-radius: 3px;
   position: absolute;
   color: white;
-  font-size: 16px;
+  font-size: 2.5vh;
+  max-width: 47.5%;
 }
 
 #mainContainer #ArrowUp {
@@ -84,7 +85,7 @@ div {
 #mainContainer #ArrowRight {
   right: 0;
   bottom: 50%;
-  transform: translate(1px, 50%);
+  transform: translate(.5%, 50%);
 }
 
 #mainContainer #ArrowDown {
@@ -139,12 +140,11 @@ div {
 
 .scoreContainer .score {
   position: absolute;
-  font-size: 25px;
+  font-size: 4vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  text-shadow: 1px 1px 1px DimGrey;
 }
 
 #correctScoreContainer {
