@@ -33,7 +33,8 @@ window.addEventListener('resize', function() {
 })
 
 function handleProgress() {
-  document.getElementById('bar').style.width = document.getElementById('progress').offsetWidth * correctRatio + 'px'
+  newBarWidth = document.getElementById('progress').offsetWidth * correctRatio + 'px'
+  document.getElementById('bar').style.width = newBarWidth
 }
 
 function handleScores() {
@@ -122,7 +123,6 @@ function unique(value, index, self) {
 var data;
 
 function main() {
-
   buttons = document.querySelectorAll("button");
   dict = {
     "ArrowUp": 0,

@@ -1,5 +1,17 @@
-html {
+body {
   font-family: "Ubuntu";
+  font-size: 2vh;
+}
+
+div {
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+#initialTip {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2vh;
 }
 
 #correctOptionImage {
@@ -10,27 +22,47 @@ html {
 }
 
 #progress {
+  position: relative;
   width: 100%;
   max-width: 600px;
+  height: 5px;
   background-color: lightgrey;
   border-radius: 2px;
+  margin-top: 2vh;
 }
 
 #bar {
-  width: 0;
+  position: absolute;
+  left: 0;
+  transform: translateX(0);
   height: 5px;
-  background-color: DarkGreen;
+  width: 0;
+  background-color: Green;
   border-radius: 2px;
 }
+
+#checkBoxes {
+  position: relative;
+  display: table;
+  margin-top: 1vh;
+}
+
+#checkBoxes label {
+  display: inline-block;
+  padding-right: 1vw;
+}
+
 
 #mainContainer {
   position: relative;
   display: inline-block;
+  margin-top: 3vh;
 }
 
 #mainContainer button {
   background: rgba(0, 0, 0, 0.5);
   border: none;
+  font-family: "Ubuntu";
   border-radius: 3px;
   position: absolute;
   color: white;
@@ -64,11 +96,13 @@ html {
 #previousImageContainer {
   position: absolute;
   width: auto;
+  margin-top: 5vh;
 }
 
 #previousImageContainer #previousImage {
   position: relative;
   height: 15vh;
+  vertical-align: middle;
 }
 
 #previousImageContainer #previousImageContent {
@@ -80,6 +114,7 @@ html {
   font-size: 12px;
   width: 100%;
   height: 100%;
+  margin: 0 auto;
 }
 
 #previousImageContainer #previousImageContent:hover {
@@ -88,26 +123,18 @@ html {
   font-size: 0;
 }
 
-#checkBoxes label {
+#scoreContainerWrap {
+  position: relative;
   display: inline-block;
-  padding-right: 10px;
-  white-space: nowrap;
-}
-
-#checkBoxes input {
-  vertical-align: middle;
-}
-
-#checkBoxes label span {
-  vertical-align: middle;
+  transform: translateX(-75%);
 }
 
 .scoreContainer {
   position: relative;
   display: inline-block;
-  border-radius: 10px;
-  width: 75px;
-  height: 50px;
+  border-radius: 1vh;
+  width: 8vh;
+  height: 7vh;
 }
 
 .scoreContainer .score {
@@ -117,7 +144,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  text-shadow: 1px 1px 2px #000000;
+  text-shadow: 1px 1px 1px DimGrey;
 }
 
 #correctScoreContainer {
