@@ -138,7 +138,7 @@ function main() {
     uniqueContinents = continents.filter(unique);
     for(i = 0; i < uniqueContinents.length ; i++){
       var label = document.createElement("label");
-      var continentSpan = document.createElement("span");
+      var continentSpan = document.createElement("div");
       var continentText = document.createTextNode(uniqueContinents[i]);
       continentSpan.appendChild(continentText);
       var continentCheckBox = document.createElement("input");
