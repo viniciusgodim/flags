@@ -120,12 +120,12 @@ body {
   position: absolute;
   text-align: center;
   top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.5);
   color: lightgrey;
   font-size: 12px;
   width: 100%;
   height: 100%;
-  margin: 0 auto;
 }
 
 #previousImageContainer #previousImageContent:hover {
@@ -164,4 +164,14 @@ body {
 
 #incorrectScoreContainer {
   background-color: FireBrick;
+}
+
+#repeatContainer {
+  position: relative;
+  left: 50%;
+}
+
+#repeatContainer div {
+  display: inline-block;
+  transform: translateY(-20%);
 }

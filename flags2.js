@@ -101,14 +101,31 @@ function generateGame(data) {
     countries = filteredData.map(a => a.country);
     countries = countries.filter(unique);
   }
+
+  if(!document.getElementById("repeatInput").checked){
+    countries = _.difference(countries,trash)
+  }
+  numberOfOptions = 4;
+  if (countries.length < numberOfOptions){
+    numberOfOptions = countries.length;
+  }
+  if (numberOfOptions == 1){
+    filteredContinents = 0;
+    trash = [];
+  }
   options = getRandomArrayElements(countries, numberOfOptions);
   correctOptionIndex = Math.floor(Math.random() * numberOfOptions);
   correctOption = options[correctOptionIndex];
+  if (!trash.includes(correctOption)){
+    trash.push(correctOption)
+  }
   document.getElementById('correctOptionImage').src = correctOption + '.svg'
   for(i = 0; i < numberOfOptions; i++){
     buttons[i].innerText = options[i]
   }
-
+  for(i = numberOfOptions; i < buttons.length; i++){
+    buttons[i].innerHTML = ''
+  }
   buttons.forEach(button => button.removeEventListener("click", handleClick));
   buttons.forEach(button => button.addEventListener("click", handleClick));
 
@@ -130,10 +147,9 @@ function main() {
     "ArrowRight": 2,
     "ArrowDown": 3
   };
-  numberOfOptions = 4;
   correctScore = incorrectScore = 0;
-  fetchJSONFile('countriesContinents.json', function(datum){
-    data = datum;
+  fetchJSONFile('countriesContinents.json', function(dataArgument){
+    data = dataArgument;
     var continents = data.map(a => a.continent);
     uniqueContinents = continents.filter(unique);
     for(i = 0; i < uniqueContinents.length ; i++){
@@ -149,6 +165,8 @@ function main() {
       document.getElementById("checkBoxes").appendChild(label);
     }
     filteredContinents = 0;
+    trash = [];
+    document.getElementById("repeatInput").checked = false;
     generateGame(data);
   });
 }
