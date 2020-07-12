@@ -45,6 +45,7 @@ body {
 
 #checkBoxes label {
   position: relative;
+  display: inline-block;
 }
 
 #checkBoxes input {
@@ -53,8 +54,7 @@ body {
 
 #checkBoxes div {
   display: inline-block;
-  padding-right: 2vw;
-  transform: translate(0,-25%);
+  padding-right: 0.75vw;
 }
 
 
@@ -176,5 +176,4 @@ body {
 
 #repeatContainer div {
   display: inline-block;
-  transform: translateY(-20%);
 }

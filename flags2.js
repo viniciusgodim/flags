@@ -162,7 +162,6 @@ function main() {
   correctScore = incorrectScore = 0;
   fetchJSONFile('countriesContinents.json', function(dataArgument){
     data = dataArgument;
-    //data = data.slice(195);
     var continents = data.map(a => a.continent);
     uniqueContinents = continents.filter(unique);
     for(i = 0; i < uniqueContinents.length ; i++){
@@ -182,6 +181,7 @@ function main() {
         });
         correctAnswersAfterContinentFilter = filteredTrashData.length;
         filteredContinents = 0;
+        buttons.forEach(button => button.style.backgroundColor='');
         generateGame();
       });
       label.appendChild(continentCheckBox);
