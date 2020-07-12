@@ -26,21 +26,16 @@ function getRandomArrayElements(arr, count) {
   return shuffled.slice(min);
 }
 
-var correctRatio;
-
-window.addEventListener('resize', function() {
-  handleProgress();
-})
+var progressFraction;
 
 function handleProgress() {
-  newBarWidth = document.getElementById('progress').offsetWidth * correctRatio + 'px'
-  document.getElementById('bar').style.width = newBarWidth
+  document.getElementById('bar').style.width = progressFraction*100 + '%'
 }
 
 function handleScores() {
   document.getElementById("correctScore").innerText = correctScore;
   document.getElementById("incorrectScore").innerText = incorrectScore;
-  correctRatio = correctScore / (correctScore + incorrectScore);
+  progressFraction = correctAnswersAfterContinentFilter/filterdContriesWithTrashLength;
   handleProgress();
 }
 
@@ -52,9 +47,12 @@ function handleIncorrectAnswer(key) {
 function handleCorrectAnswer() {
   buttons.forEach(button => button.style.backgroundColor='');
   correctScore++;
+  if (!previousTrash.includes(correctOption)){
+    correctAnswersAfterContinentFilter++;
+  }
   document.getElementById('previousImage').src =  correctOption + '.svg';
   document.getElementById('previousImageContent').innerText = correctOption;
-  generateGame(data);
+  generateGame();
 }
 
 function handleKey(event) {
@@ -85,39 +83,51 @@ function handleClick(event){
   handleScores();
 }
 
-function generateGame(data) {
-  oldFilteredContinents = filteredContinents;
+function filterContinents(){
   filteredContinents = [];
-  var checkBoxes = document.getElementById('checkBoxes').querySelectorAll('input')
   for(i = 0; i < uniqueContinents.length; i++){
     if (checkBoxes[i].checked){
       filteredContinents.push(checkBoxes[i].parentElement.innerText);
     }
   }
+}
+
+function filterDataByContinents(){
+  filteredData = data.filter(obj => {
+    return filteredContinents.includes(obj.continent)
+  });
+}
+
+function generateGame() {
+  oldFilteredContinents = filteredContinents;
+  checkBoxes = document.getElementById('checkBoxes').querySelectorAll('input');
+  filterContinents();
   if (JSON.stringify(oldFilteredContinents) !== JSON.stringify(filteredContinents)){
-    var filteredData = data.filter(obj => {
-      return filteredContinents.includes(obj.continent)
-    })
+    filterDataByContinents();
     countries = filteredData.map(a => a.country);
     countries = countries.filter(unique);
+    filterdContriesWithTrashLength = countries.length
   }
-
   if(!document.getElementById("repeatInput").checked){
     countries = _.difference(countries,trash)
+  }
+  if(trash.length == 1){
+    correctAnswersAfterContinentFilter = 1;
   }
   numberOfOptions = 4;
   if (countries.length < numberOfOptions){
     numberOfOptions = countries.length;
   }
-  if (numberOfOptions == 1){
-    filteredContinents = 0;
-    trash = [];
-  }
   options = getRandomArrayElements(countries, numberOfOptions);
   correctOptionIndex = Math.floor(Math.random() * numberOfOptions);
   correctOption = options[correctOptionIndex];
+  previousTrash = trash.slice(0);
   if (!trash.includes(correctOption)){
     trash.push(correctOption)
+  }
+  if (numberOfOptions == 1){
+    filteredContinents = 0;
+    trash = [];
   }
   document.getElementById('correctOptionImage').src = correctOption + '.svg'
   for(i = 0; i < numberOfOptions; i++){
@@ -138,6 +148,8 @@ function unique(value, index, self) {
 }
 
 var data;
+var previousTrash;
+var filteredData;
 
 function main() {
   buttons = document.querySelectorAll("button");
@@ -150,6 +162,7 @@ function main() {
   correctScore = incorrectScore = 0;
   fetchJSONFile('countriesContinents.json', function(dataArgument){
     data = dataArgument;
+    //data = data.slice(195);
     var continents = data.map(a => a.continent);
     uniqueContinents = continents.filter(unique);
     for(i = 0; i < uniqueContinents.length ; i++){
@@ -160,13 +173,26 @@ function main() {
       var continentCheckBox = document.createElement("input");
       continentCheckBox.setAttribute("type", "checkbox");
       continentCheckBox.checked = true;
+      continentCheckBox.addEventListener('change',function(){
+        trash.pop();
+        filterContinents();
+        filterDataByContinents();
+        var filteredTrashData = filteredData.filter(obj => {
+          return trash.includes(obj.country)
+        });
+        correctAnswersAfterContinentFilter = filteredTrashData.length;
+        filteredContinents = 0;
+        generateGame();
+      });
       label.appendChild(continentCheckBox);
       label.appendChild(continentSpan);
       document.getElementById("checkBoxes").appendChild(label);
     }
     filteredContinents = 0;
     trash = [];
-    document.getElementById("repeatInput").checked = false;
-    generateGame(data);
+    correctAnswersAfterContinentFilter = 0
+    repeatInput = document.getElementById("repeatInput")
+    repeatInput.checked = false;
+    generateGame();
   });
 }
