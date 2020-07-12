@@ -53,7 +53,7 @@ body {
 
 #checkBoxes div {
   display: inline-block;
-  padding-right: 2vw;
+  padding-right: 0.75vw;
   transform: translate(0,-25%);
 }
 
