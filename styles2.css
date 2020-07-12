@@ -6,7 +6,6 @@ body {
 #initialTip {
   position: relative;
   text-align: center;
-  margin-bottom: 2vh;
 }
 
 #correctOptionImage {
@@ -139,6 +138,7 @@ body {
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 1vh;
 }
 
 .scoreContainer {
@@ -167,8 +167,11 @@ body {
 }
 
 #repeatContainer {
+  display: inline-block;
   position: relative;
   left: 50%;
+  transform: translate(-50%,0);
+  margin-top: 1vh;
 }
 
 #repeatContainer div {
